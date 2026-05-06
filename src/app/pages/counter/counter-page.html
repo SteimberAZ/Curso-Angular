@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body class="justify-center items-center w-full h-screen flex">
+    <div class="text-3xl font-bold m-4 flex flex-col items-center gap-4 justify-center border-2 border-gray-300 p-4 rounded-lg shadow-lg h-50 hover:p-6 transition-all duration-300" id="caja">
+        <p class="text-lg " >Contador: {{ counter }}</p>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded hover:scale-105 transition-transform duration-200" (click)="increment()">Incrementar</button>
+    </div>
+</body>
+</html>

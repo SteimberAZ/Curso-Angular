@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body class="w-screen h-screen bg-black overflow-hidden">
+    <div
+  class="w-screen h-screen bg-black overflow-hidden relative"
+  (click)="onClick($event)"
+>
+
+  <!-- Partículas -->
+  @for (p of particles(); track $index) {
+    <div
+      class="absolute bg-pink-500 rounded-full"
+      [style.left.px]="p.x"
+      [style.top.px]="p.y"
+      [style.width.px]="p.size"
+      [style.height.px]="p.size"
+      [style.transform]="'translate(-50%, -50%)'"
+    >
+    </div>
+  }
+
+    </div>
+  <om-particles (click)="changeWidth()" class="fixed inset-0">
+
+    <div
+      (click)="changeWidth()"
+      class="w-full h-full flex flex-col justify-center items-center gap-3"
+    >
+
+      <h1 class="text-2xl text-white">
+        {{ name() }}
+      </h1>
+
+      <svg
+        *ngIf="mostrar()"
+        [attr.width]="ancho()"
+        class="h-auto cursor-pointer"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"
+          fill="#ff0000"
+        />
+      </svg>
+
+    </div>
+
+  </om-particles>
+
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body class="flex justify-center items-center w-full h-screen font-semibold">
+    <div class="justify-center items-center flex flex-col w-auto h-auto p-5 bg-orange-200 rounded-lg shadow-lg gap-2.5">
+        
+        <h1>{{ name() }}</h1>
+
+        <dl>
+        <td>Nombre:</td>
+        <dd>{{ name() }}</dd>
+
+        <td>Edad:</td>
+        <dd>{{ age() }}</dd>
+
+        <td>Método:</td>
+        <dd>{{ getHeroDescription() }}</dd>
+
+        <td>Capitalizado:</td>
+        
+        <dd> {{ name().toUpperCase() }} </dd> 
+        </dl>
+
+        <button (click)="changeHero()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded hover:scale-105 transition-transform duration-200">
+        Cambiar nombre
+        </button>
+        <input type="text"   (input)="changeinput($event)" class="border border-gray-300 rounded py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <button (click)="changeHero2()"  class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded hover:scale-105 transition-transform duration-200">
+        Cambiar nombre 2
+        </button>
+
+        <button (click)="changeAge()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded hover:scale-105 transition-transform duration-200">
+        Cambiar edad
+        </button>
+
+        <button (click)="resetForm()" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded hover:scale-105 transition-transform duration-200">
+        Reset
+        </button>
+    </div>
+</body>
+</html>
+    

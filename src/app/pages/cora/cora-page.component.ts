@@ -33,9 +33,9 @@ export class CoraPageComponent implements OnInit {
 
       this.name.set('Gracias por ser parte de mi vida mi amor <3');
 
-      setTimeout(() => {
+      
         this.mostrar.set(false);
-      }, 400);
+      
     }
   }
 

@@ -1,11 +1,13 @@
 import { Component, signal, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxParticlesComponent } from '@omnedia/ngx-particles';
+import { AsyncPipe } from '@angular/common';
+import { TypewriterService } from '../../typewriter';
 
 @Component({
   selector: 'app-cora-page',
   standalone: true,
-  imports: [NgxParticlesComponent, CommonModule],
+  imports: [NgxParticlesComponent, CommonModule, AsyncPipe],
   templateUrl: './cora-page.component.html',
 })
 export class CoraPageComponent implements OnInit {
@@ -14,6 +16,16 @@ export class CoraPageComponent implements OnInit {
   ancho = signal(100);
   mostrar = signal(true);
 
+  titles = signal([
+    'Toca mi corazón',
+    'y verás que te amo',
+    'más de lo que imaginas'
+  ]);
+
+  private typewriterService = inject(TypewriterService);
+
+  typedText$ = this.typewriterService.getTypewriterEffect(this.titles());
+
   particles = signal<any[]>([]);
 
   ngOnInit() {
@@ -21,25 +33,29 @@ export class CoraPageComponent implements OnInit {
   }
 
   changeWidth() {
-  
+
     this.ancho.set(this.ancho() + 20);
-     if (this.ancho() <= 300) {
-          this.explode(window.innerWidth / 2, window.innerHeight / 2);
-     
+
+    if (this.ancho() <= 300) {
+      this.explode(window.innerWidth / 2, window.innerHeight / 2);
     }
+
     if (this.ancho() >= 300) {
 
-     
+        this.titles.set(["No fue un click… fue un recuerdo activándose 💫",
+    "Hay personas que llegan y cambian el ritmo del corazón 💖",
+    "Lo que sentí no se puede explicar, solo sentir 💕",
+    "Tu toque dejó una huella en mí ✨",
+    "A veces un gesto pequeño significa todo un universo 💘"]);
 
-      this.name.set('Gracias por ser parte de mi vida mi amor <3');
+      // 🔥 RECREAR observable correctamente
+      this.typedText$ =
+        this.typewriterService.getTypewriterEffect(this.titles());
 
-      
-        this.mostrar.set(false);
-      
+      this.mostrar.set(false);
     }
   }
 
-  // 💥 EXPLOSIÓN
   explode(x: number, y: number) {
 
     const newParticles: any[] = [];
@@ -55,32 +71,32 @@ export class CoraPageComponent implements OnInit {
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
         size: Math.random() * 8 + 4,
-        life: 1
+        life: 4
       });
 
     }
 
     this.particles.update(p => [...p, ...newParticles]);
 
-    // limpiar después
     setTimeout(() => {
       this.particles.set([]);
-    }, 1000);
+    }, 4000);
   }
 
-  // 🎬 ANIMACIÓN DE PARTÍCULAS (IMPORTANTE)
   animate() {
 
     const loop = () => {
 
       this.particles.update(particles =>
-        particles.map(p => ({
-          ...p,
-          x: p.x + p.vx,
-          y: p.y + p.vy,
-          vy: p.vy + 0.15, // gravedad
-          life: p.life - 0.02
-        })).filter(p => p.life > 0)
+        particles
+          .map(p => ({
+            ...p,
+            x: p.x + p.vx,
+            y: p.y + p.vy,
+            vy: p.vy + 0.15,
+            life: p.life - 0.02
+          }))
+          .filter(p => p.life > 0)
       );
 
       requestAnimationFrame(loop);
@@ -89,7 +105,6 @@ export class CoraPageComponent implements OnInit {
     loop();
   }
 
-  // click manual opcional
   onClick(event: MouseEvent) {
     this.explode(event.clientX, event.clientY);
   }

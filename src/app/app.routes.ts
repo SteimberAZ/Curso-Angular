@@ -4,7 +4,7 @@ import { heroPageComponent } from './pages/hero/hero-page.component';
 import { CoraPageComponent } from './pages/cora/cora-page.component';
 export const routes: Routes = [
     {
-    path: 'th',
+    path: 'counter',
     component: CounterPageComponent,
     },
     {

@@ -4,8 +4,8 @@ import { TypewriterService } from '../../typewriter';
 
 @Component({
   templateUrl: './counter-page.component.html',
-  standalone: true, // 👈 asegúrate de esto
-  imports: [AsyncPipe], // 👈 aquí agregas el pipe
+  standalone: true, 
+  imports: [AsyncPipe], 
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CounterPageComponent {

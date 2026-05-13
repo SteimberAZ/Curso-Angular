@@ -48,7 +48,7 @@ export class CoraPageComponent implements OnInit {
     "Tu toque dejó una huella en mí ✨",
     "A veces un gesto pequeño significa todo un universo 💘"]);
 
-      // 🔥 RECREAR observable correctamente
+     
       this.typedText$ =
         this.typewriterService.getTypewriterEffect(this.titles());
 
@@ -71,7 +71,7 @@ export class CoraPageComponent implements OnInit {
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
         size: Math.random() * 8 + 4,
-        life: 4
+        life: 9
       });
 
     }

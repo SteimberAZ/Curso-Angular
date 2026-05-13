@@ -1,13 +1,20 @@
-import { ChangeDetectionStrategy, Component, inject, inputBinding, signal } from '@angular/core';
+import { UpperCasePipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, inputBinding, signal,computed } from '@angular/core';
 
 @Component({
   templateUrl: './hero-page.component.html',
+  imports: [UpperCasePipe],
   
 })
 export class heroPageComponent {
   name = signal('IronMan');
   age = signal(45);
-    inputValue = signal(''); 
+  Description = computed(() => `${this.name()} tiene ${this.age()} años.`);
+  CapitalizedName = computed(() => this.name().toUpperCase());
+  inputValue = signal(''); 
+
+
+
   getHeroDescription() {
     return `${this.name()} tiene ${this.age()} años.`;
   }

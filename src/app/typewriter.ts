@@ -17,7 +17,7 @@ export class TypewriterService {  // 👈 ESTO ES CLAVE
     return interval(speed).pipe(
       map(x =>
         backwards
-          ? word.substring(0, word.length - x)
+          ? word.substring(0, (word.length - x) - x)
           : word.substring(0, x + 1)
       ),
       take(word.length)
